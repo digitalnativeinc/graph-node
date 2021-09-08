@@ -75,12 +75,12 @@ struct IndexingContext<T: RuntimeHostBuilder<C>, C: Blockchain> {
     pub state: IndexingState<T, C>,
 
     /// Sensors to measure the execution of the subgraph instance
-    pub subgraph_metrics: Arc<SubgraphInstanceMetrics>,
+    pub subgraph_metrics: Arc<SubgraphInstanceMetrics>, // ACHO QUE NÃO
 
     /// Sensors to measure the execution of the subgraph's runtime hosts
-    pub host_metrics: Arc<HostMetrics>,
+    pub host_metrics: Arc<HostMetrics>, // ACHO QUE NÃO
 
-    pub block_stream_metrics: Arc<BlockStreamMetrics>,
+    pub block_stream_metrics: Arc<BlockStreamMetrics>, // ACHO QUE NÃO
 }
 
 pub struct SubgraphInstanceManager<S, M, L> {
@@ -661,11 +661,11 @@ impl From<Error> for BlockProcessingError {
 /// Processes a block and returns the updated context and a boolean flag indicating
 /// whether new dynamic data sources have been added to the subgraph.
 async fn process_block<T: RuntimeHostBuilder<C>, C: Blockchain>(
-    logger: &Logger,
+    logger: &Logger,// KILL THAT GUY
     triggers_adapter: Arc<C::TriggersAdapter>,
     mut ctx: IndexingContext<T, C>,
-    block_stream_cancel_handle: CancelHandle,
-    block: BlockWithTriggers<C>,
+    block_stream_cancel_handle: CancelHandle, // NOT THIS ONE
+    block: BlockWithTriggers<C>,// NOT AS WELL
 ) -> Result<(IndexingContext<T, C>, bool), BlockProcessingError> {
     let triggers = block.trigger_data;
     let block = Arc::new(block.block);
