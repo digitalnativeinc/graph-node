@@ -868,12 +868,12 @@ impl EthereumAdapterTrait for EthereumAdapter {
             .compat();
 
         let web3 = self.web3.clone();
-        let gen_block_hash_future = retry("eth_getBlockByNumber(0, false) RPC call", &logger)
+        let gen_block_hash_future = retry("eth_getBlockByNumber(339330, false) RPC call", &logger)
             .no_limit()
             .timeout_secs(30)
             .run(move || {
                 web3.eth()
-                    .block(BlockId::Number(Web3BlockNumber::Number(0.into())))
+                    .block(BlockId::Number(Web3BlockNumber::Number(339330.into())))
                     .from_err()
                     .and_then(|gen_block_opt| {
                         future::result(
